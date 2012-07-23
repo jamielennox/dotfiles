@@ -9,7 +9,7 @@ fi
 PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
 # local_prefix is not a standard term, just something this uses.
-export LOCAL_PREFIX=$LOCAL_PREFIX
+export LOCAL_PREFIX=$HOME/usr
 
 # User specific aliases and functions
 export CONFIG_SITE=$HOME/config.site
