@@ -112,9 +112,6 @@ nmap <F8> :TagbarToggle<CR>
 
 if has("gui_running")
     " GUI is running or is about to start.
-    " Maximize gvim window.
-    set lines=999 columns=999
-
     set spelllang=en_au
     set spell
 endif
