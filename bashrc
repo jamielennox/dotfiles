@@ -20,7 +20,10 @@ export PATH=$LOCAL_PREFIX/bin:$PATH:/var/lib/gems/1.8/bin
 export GI_TYPELIB_PATH=$LOCAL_PREFIX/lib/girepository-1.0/:$GI_TYPELIB_PATH
 export LD_LIBRARY_PATH=$LOCAL_PREFIX/lib/:$LD_LIBRARY_PATH
 export PYTHONPATH=$LOCAL_PREFIX/lib/python2.7/dist-packages/:$LOCAL_PREFIX/lib/python2.7/site-packages/:$PYTHONPATH
+export PERL5LIB=$LOCAL_PREFIX/share/perl5:$PERL5LIB
 export CSCOPE_EDITOR=gvim
+export PSA_ROOT=$LOCAL_PREFIX/share/psa
+
 export EDITOR="gvim -f"
 
 alias givm='gvim'
