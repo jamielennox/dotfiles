@@ -121,15 +121,19 @@ endif
 " Run: open vim and run :BundleInstall
 
 Bundle 'gmarik/vundle'
-Bundle "YankRing.vim"
+Bundle 'YankRing.vim'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-Bundle "tComment"
-Bundle "snipMate"
-Bundle 'gundo'
+Bundle 'tComment'
+Bundle 'Command-T'
+Bundle 'snipMate'
+Bundle 'Gundo'
+Bundle 'Tagbar'
+Bundle 'cvsmenu.vim-updated'
 Bundle 'kana/vim-textobj-user'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
 Bundle 'godlygeek/tabular'
