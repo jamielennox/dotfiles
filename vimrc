@@ -41,10 +41,10 @@ set scrolloff=3         " Start scrolling 3 lines from bottom
 nnoremap ; :
 
 " learn to use hjkl
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+" map <up> <nop>
+" map <down> <nop>
+" map <left> <nop>
+" map <right> <nop>
 
 " up/down goes to within wrapped lines instead of skipping
 nnoremap j gj
@@ -58,6 +58,7 @@ map <C-l> <C-w>l
 
 " clear search highlights with ,/
 nmap <silent> <leader>/ :nohlsearch<CR>
+map <leader>y :YRShow<CR>
 
 " write it with sudo
 cmap w!! w !sudo tee % >/dev/null
@@ -67,16 +68,33 @@ inoremap <F1> <nop>
 nnoremap <F1> <nop>
 vnoremap <F1> <nop>
 
+" http://technotales.wordpress.com/2010/03/31/preserve-a-vim-function-that-keeps-your-state/
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+
+  " Do the business:
+  a:command
+
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+
+function! StripTrailingWhiteSpaces() 
+  call Preserve("%s/\\s\\+$//e")
+endfunction 
+
 " correctly format certain files
-au BufRead,BufNewFile {Gemfile,Rakefile,Capfile,*.rake,config.ru} set ft=ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Capfile,*.rake,config.ru,*.gemspec} set ft=ruby
 au BufRead,BufNewFile {*.md,*.mkd,*.markdown} set ft=markdown
 au BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
 
 " syntax overrides
-autocmd filetype ruby set shiftwidth=2
-
-" strip trailing whitespace from lines
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd filetype ruby,yml set shiftwidth=2
+autocmd filetype c,cpp,python,ruby,java autocmd BufWritePre <buffer> call StripTrailingWhiteSpaces()
 
 " reload vimrc if it changes
 augroup myvimrchooks
@@ -89,6 +107,7 @@ runtime macros/matchit.vim      " % tag/bracket matching
 " set tabstop=4
 
 set mat=5 " bracket matching
+set completeopt+=longest " omni autocomplete use longest match
 
 set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
@@ -108,6 +127,9 @@ map <A-0> :tablast<CR>
 cabbr W w
 cabbr Q q
 
+nmap <F5> :GundoToggle<CR> 
+nmap <F6> :ScratchToggle<CR>
+nmap <F7> :NERDTreeToggle<CR> 
 nmap <F8> :TagbarToggle<CR>
 
 if has("gui_running")
@@ -116,29 +138,35 @@ if has("gui_running")
     set spell
 endif
 
-
 " Setup:  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 " Run: open vim and run :BundleInstall
 
 Bundle 'gmarik/vundle'
 Bundle 'YankRing.vim'
 Bundle 'L9'
-Bundle 'FuzzyFinder'
+" Bundle 'FuzzyFinder'
 Bundle 'tComment'
 Bundle 'Command-T'
 Bundle 'snipMate'
 Bundle 'Gundo'
 Bundle 'Tagbar'
-Bundle 'cvsmenu.vim-updated'
+Bundle 'scratch.vim' 
+" Bundle 'cvsmenu.vim-updated'
 Bundle 'kana/vim-textobj-user'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdtree'
 Bundle 'godlygeek/tabular'
+Bundle 'ervandew/supertab' 
 Bundle 'sjbach/lusty'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'nelstrom/vim-textobj-rubyblock'
+
+" use ctrl+space for auto complete, tab is annoying
+let g:SuperTabMappingForward = '<c-space>' 
+let g:SuperTabMappingBackward = '<s-c-space>' 
 
 
