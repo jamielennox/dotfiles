@@ -34,8 +34,10 @@ set gdefault            " always find/replace global /g
 set showmatch           " show matching parenthesis
 set incsearch           " show search matches as you type
 
+set spelllang=en_au     " Localized Spelling
+
 set colorcolumn=85      " show warning column at 85 chars
-set hidden
+set hidden              " don't unload buffers when it is not shown
 
 set scrolloff=3         " Start scrolling 3 lines from bottom
 nnoremap ; :
@@ -50,6 +52,9 @@ nnoremap ; :
 nnoremap j gj
 nnoremap k gk
 
+" select the most recent pasted region
+nmap gV `[v`]
+
 " Easy window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -58,7 +63,13 @@ map <C-l> <C-w>l
 
 " clear search highlights with ,/
 nmap <silent> <leader>/ :nohlsearch<CR>
-map <leader>y :YRShow<CR>
+
+map <leader>y :YRShow<CR> 
+map <leader>v :tabedit $MYVIMRC<CR> 
+map <leader>s :set spell!<CR> " Toggle
+
+" This doesn't have a <CR> on purpose so you can choose what to align
+map <leader>a :Tabularize/
 
 " write it with sudo
 cmap w!! w !sudo tee % >/dev/null
@@ -99,7 +110,7 @@ autocmd filetype c,cpp,python,ruby,java autocmd BufWritePre <buffer> call StripT
 " reload vimrc if it changes
 augroup myvimrchooks
     au!
-    autocmd bufwritepost .vimrc source ~/.vimrc
+    autocmd bufwritepost .vimrc source $MYVIMRC
 augroup END
 
 runtime macros/matchit.vim      " % tag/bracket matching
@@ -111,6 +122,10 @@ set completeopt+=longest " omni autocomplete use longest match
 
 set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
+
+" Easy tab opening 
+nnoremap <C-S-t> :tabnew<CR> 
+inoremap <C-S-t> <Esc>:tabnew<CR> 
 
 " Tab naviagation by ALT+[number]
 map <A-1> 1gt
@@ -124,7 +139,8 @@ map <A-8> 8gt
 map <A-9> 9gt
 map <A-0> :tablast<CR>
 
-cabbr W w
+" for when you accidently hit <S>w when you just mean w
+cabbr W w 
 cabbr Q q
 
 nmap <F5> :GundoToggle<CR> 
@@ -144,14 +160,12 @@ endif
 Bundle 'gmarik/vundle'
 Bundle 'YankRing.vim'
 Bundle 'L9'
-" Bundle 'FuzzyFinder'
 Bundle 'tComment'
 Bundle 'Command-T'
 Bundle 'snipMate'
 Bundle 'Gundo'
 Bundle 'Tagbar'
 Bundle 'scratch.vim' 
-" Bundle 'cvsmenu.vim-updated'
 Bundle 'kana/vim-textobj-user'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
