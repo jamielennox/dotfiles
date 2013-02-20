@@ -68,6 +68,9 @@ map <leader>y :YRShow<CR>
 map <leader>v :tabedit $MYVIMRC<CR> 
 map <leader>s :set spell!<CR> " Toggle
 
+" This is simply a screen refresh as for some reason I sometimes lose my cursor
+map <leader>c :!echo > /dev/null<CR>
+
 " This doesn't have a <CR> on purpose so you can choose what to align
 map <leader>a :Tabularize/
 
@@ -87,7 +90,7 @@ function! Preserve(command)
   let c = col(".")
 
   " Do the business:
-  a:command
+  execute a:command
 
   " Clean up: restore previous search history, and cursor position
   let @/=_s
@@ -165,7 +168,7 @@ Bundle 'Command-T'
 Bundle 'snipMate'
 Bundle 'Gundo'
 Bundle 'Tagbar'
-Bundle 'scratch.vim' 
+Bundle 'jamielennox/scratch.vim'
 Bundle 'kana/vim-textobj-user'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
