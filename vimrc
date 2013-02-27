@@ -61,7 +61,7 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" clear search highlights with ,/
+" clear search highlights
 nmap <silent> <leader>/ :nohlsearch<CR>
 
 map <leader>y :YRShow<CR> 
@@ -164,6 +164,7 @@ Bundle 'gmarik/vundle'
 Bundle 'YankRing.vim'
 Bundle 'L9'
 Bundle 'tComment'
+" Command-T requires compiling a c extension. see :help command-t-installation
 Bundle 'Command-T'
 Bundle 'snipMate'
 Bundle 'Gundo'
@@ -175,6 +176,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'godlygeek/tabular'
 Bundle 'ervandew/supertab' 
@@ -186,4 +189,13 @@ Bundle 'nelstrom/vim-textobj-rubyblock'
 let g:SuperTabMappingForward = '<c-space>' 
 let g:SuperTabMappingBackward = '<s-c-space>' 
 
+" Auto pop up syntax error list
+let g:syntastic_auto_loc_list=1
+let g:syntastic_loc_list_height=5
 
+let g:syntastic_python_checkers=['flake8']
+" E501: Line length < 80
+" E126: Under indented hanging line
+" E128: Over indented hanging line
+" W391: Blank line at end of file
+let g:syntastic_python_flake8_args='--ignore=E501,E126,E128,W391'
