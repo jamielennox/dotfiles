@@ -107,8 +107,8 @@ au BufRead,BufNewFile {*.md,*.mkd,*.markdown} set ft=markdown
 au BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
 
 " syntax overrides
-autocmd filetype ruby,yml set shiftwidth=2
-autocmd filetype c,cpp,python,ruby,java autocmd BufWritePre <buffer> call StripTrailingWhiteSpaces()
+autocmd FileType ruby,yml set shiftwidth=2
+autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre <buffer> call StripTrailingWhiteSpaces()
 
 " reload vimrc if it changes
 augroup myvimrchooks
