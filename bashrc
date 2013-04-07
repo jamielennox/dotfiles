@@ -39,5 +39,9 @@ function vssh() {
     ssh `sudo ~/virt-addr.py $1`
 }
 
-[[ -s "/usr/bin/virtualenvwrapper.sh" ]] && source "/usr/bin/virtualenvwrapper.sh" 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+function source_if_exists() { 
+    [[ -s $1 ]] && source $1
+}
+
+source_if_exists "/usr/bin/virtualenvwrapper.sh"
+source_if_exists "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
