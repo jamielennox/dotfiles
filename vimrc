@@ -36,7 +36,7 @@ set incsearch           " show search matches as you type
 
 set spelllang=en_au     " Localized Spelling
 
-set colorcolumn=85      " show warning column at 85 chars
+set colorcolumn=80      " show warning column at 85 chars
 set hidden              " don't unload buffers when it is not shown
 
 set scrolloff=3         " Start scrolling 3 lines from bottom
@@ -64,8 +64,8 @@ map <C-l> <C-w>l
 " clear search highlights
 nmap <silent> <leader>/ :nohlsearch<CR>
 
-map <leader>y :YRShow<CR> 
-map <leader>v :tabedit $MYVIMRC<CR> 
+map <leader>y :YRShow<CR>
+map <leader>v :tabedit $MYVIMRC<CR>
 map <leader>s :set spell!<CR> " Toggle
 
 " This is simply a screen refresh as for some reason I sometimes lose my cursor
@@ -73,6 +73,9 @@ map <leader>c :!echo > /dev/null<CR>
 
 " This doesn't have a <CR> on purpose so you can choose what to align
 map <leader>a :Tabularize/
+
+" Show the full length filename:linenumber. Userful for breakpoints.
+map <leader>b :echo printf("%s:%d", expand('%:p'), line('.'))<CR>
 
 " write it with sudo
 cmap w!! w !sudo tee % >/dev/null
@@ -97,18 +100,19 @@ function! Preserve(command)
   call cursor(l, c)
 endfunction
 
-function! StripTrailingWhiteSpaces() 
+function! StripTrailingWhiteSpaces()
   call Preserve("%s/\\s\\+$//e")
-endfunction 
+endfunction
 
 " correctly format certain files
 au BufRead,BufNewFile {Gemfile,Rakefile,Capfile,*.rake,config.ru,*.gemspec} set ft=ruby
 au BufRead,BufNewFile {*.md,*.mkd,*.markdown} set ft=markdown
-au BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
+au BufRead,BufNewFile {COMMIT_EDITMSG,.stgit-*.txt} set ft=gitcommit
 
 " syntax overrides
 autocmd FileType ruby,yml set shiftwidth=2
-autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre <buffer> call StripTrailingWhiteSpaces()
+" autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre <buffer> call StripTrailingWhiteSpaces()
+autocmd BufWritePre * call StripTrailingWhiteSpaces()
 
 " reload vimrc if it changes
 augroup myvimrchooks
@@ -126,9 +130,9 @@ set completeopt+=longest " omni autocomplete use longest match
 set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
 
-" Easy tab opening 
-nnoremap <C-S-t> :tabnew<CR> 
-inoremap <C-S-t> <Esc>:tabnew<CR> 
+" Easy tab opening
+nnoremap <C-S-t> :tabnew<CR>
+inoremap <C-S-t> <Esc>:tabnew<CR>
 
 " Tab naviagation by ALT+[number]
 map <A-1> 1gt
@@ -143,12 +147,12 @@ map <A-9> 9gt
 map <A-0> :tablast<CR>
 
 " for when you accidently hit <S>w when you just mean w
-cabbr W w 
+cabbr W w
 cabbr Q q
 
-nmap <F5> :GundoToggle<CR> 
+nmap <F5> :GundoToggle<CR>
 nmap <F6> :ScratchToggle<CR>
-nmap <F7> :NERDTreeToggle<CR> 
+nmap <F7> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 
 if has("gui_running")
@@ -169,6 +173,7 @@ Bundle 'Command-T'
 Bundle 'snipMate'
 Bundle 'Gundo'
 Bundle 'Tagbar'
+Bundle 'virtualenv.vim'
 Bundle 'jamielennox/scratch.vim'
 Bundle 'kana/vim-textobj-user'
 Bundle 'tpope/vim-repeat'
@@ -180,22 +185,24 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'godlygeek/tabular'
-Bundle 'ervandew/supertab' 
+Bundle 'ervandew/supertab'
 Bundle 'sjbach/lusty'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 
 " use ctrl+space for auto complete, tab is annoying
-let g:SuperTabMappingForward = '<c-space>' 
-let g:SuperTabMappingBackward = '<s-c-space>' 
+let g:SuperTabMappingForward = '<c-space>'
+let g:SuperTabMappingBackward = '<s-c-space>'
 
 " Auto pop up syntax error list
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=5
 
 let g:syntastic_python_checkers=['flake8']
+" let g:syntastic_python_flake8_tail='| grep -v "W802 undefined name _"'
+
 " E501: Line length < 80
 " E126: Under indented hanging line
 " E128: Over indented hanging line
 " W391: Blank line at end of file
-let g:syntastic_python_flake8_args='--ignore=E501,E126,E128,W391'
+" let g:syntastic_python_flake8_args='--ignore=E126,E128,W391'
