@@ -5,7 +5,7 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-# if you get __git_ps1 not found on fedora 18 do: 
+# if you get __git_ps1 not found on fedora 18 do:
 # sudo ln -s /usr/share/git-core/contrib/completion/git-prompt.sh  /etc/profile.d/
 # or add to .bashrc
 # info: https://bugzilla.redhat.com/show_bug.cgi?id=878428
@@ -29,17 +29,26 @@ export PERL5LIB=$LOCAL_PREFIX/share/perl5:$PERL5LIB
 export CSCOPE_EDITOR=gvim
 export PSA_ROOT=$LOCAL_PREFIX/share/psa
 
-export EDITOR="gvim -f"
+export EDITOR="/usr/bin/gvim -f"
 
 alias givm='gvim'
 alias sl='ls'
 alias grpe='grep'
 
-function vssh() { 
+
+alias g='git'
+complete -o default -o nospace -F _git g
+
+function vssh() {
     ssh `sudo ~/virt-addr.py $1`
 }
 
-function source_if_exists() { 
+set -o vi
+
+# virsh connect to the qemu:///system by default
+export VIRSH_DEFAULT_CONNECT_URI="qemu:///system"
+
+function source_if_exists() {
     [[ -s $1 ]] && source $1
 }
 
