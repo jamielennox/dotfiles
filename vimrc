@@ -150,6 +150,7 @@ map <A-0> :tablast<CR>
 cabbr W w
 cabbr Q q
 
+nmap <F3> :NumbersToggle<CR>
 nmap <F5> :GundoToggle<CR>
 nmap <F6> :ScratchToggle<CR>
 nmap <F7> :NERDTreeToggle<CR>
@@ -189,6 +190,7 @@ Bundle 'ervandew/supertab'
 Bundle 'sjbach/lusty'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'myusuf3/numbers.vim'
 
 " use ctrl+space for auto complete, tab is annoying
 let g:SuperTabMappingForward = '<c-space>'
