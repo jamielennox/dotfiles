@@ -37,6 +37,13 @@ alias grpe='grep'
 
 
 alias g='git'
+alias ga='git add'
+alias gc='git checkout'
+alias gs='git status'
+alias gd='git diff'
+alias gpr='git pull --rebase'
+alias gr='git review'
+
 complete -o default -o nospace -F _git g
 
 function vssh() {
