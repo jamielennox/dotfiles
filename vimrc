@@ -1,9 +1,7 @@
 set nocompatible        " Don't care about vi syntax
-filetype off            " Needs to be off before vundle, on again later
 let mapleader = ","     " and it needs to go above plugin loading
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+execute pathogen#infect()
 
 filetype indent plugin on
 
@@ -128,9 +126,6 @@ runtime macros/matchit.vim      " % tag/bracket matching
 set mat=5 " bracket matching
 set completeopt+=longest " omni autocomplete use longest match
 
-set backupdir=~/.vim/tmp
-set directory=~/.vim/tmp
-
 " Easy tab opening
 nnoremap <C-S-t> :tabnew<CR>
 inoremap <C-S-t> <Esc>:tabnew<CR>
@@ -163,35 +158,7 @@ if has("gui_running")
     set spell
 endif
 
-" Setup:  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-" Run: open vim and run :BundleInstall
-
-Bundle 'gmarik/vundle'
-Bundle 'YankRing.vim'
-Bundle 'L9'
-Bundle 'tComment'
-" Command-T requires compiling a c extension. see :help command-t-installation
-Bundle 'Command-T'
-Bundle 'snipMate'
-Bundle 'Gundo'
-Bundle 'Tagbar'
-Bundle 'virtualenv.vim'
-Bundle 'jamielennox/scratch.vim'
-Bundle 'kana/vim-textobj-user'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'godlygeek/tabular'
-Bundle 'ervandew/supertab'
-Bundle 'sjbach/lusty'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'myusuf3/numbers.vim'
+" " Command-T requires compiling a c extension. see :help command-t-installation
 
 " use ctrl+space for auto complete, tab is annoying
 let g:SuperTabMappingForward = '<c-space>'
@@ -202,7 +169,6 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=5
 
 let g:syntastic_python_checkers=['flake8']
-" let g:syntastic_python_flake8_tail='| grep -v "W802 undefined name _"'
 
 " E501: Line length < 80
 " E126: Under indented hanging line
