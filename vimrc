@@ -152,6 +152,12 @@ nmap <F6> :ScratchToggle<CR>
 nmap <F7> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 
+" visual block dragging
+vmap <expr> <s-h> DVB_Drag('left')
+vmap <expr> <s-l> DVB_Drag('right')
+vmap <expr> <s-j> DVB_Drag('down')
+vmap <expr> <s-k> DVB_Drag('up')
+
 if has("gui_running")
     " GUI is running or is about to start.
     set spelllang=en_au
