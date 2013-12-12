@@ -35,7 +35,6 @@ set incsearch           " show search matches as you type
 
 set spelllang=en_au     " Localized Spelling
 
-set colorcolumn=80      " show warning column at 85 chars
 set hidden              " don't unload buffers when it is not shown
 
 set scrolloff=3         " Start scrolling 3 lines from bottom
@@ -76,6 +75,9 @@ map <leader>a :Tabularize/
 " Show the full length filename:linenumber. Userful for breakpoints.
 map <leader>b :echo printf("%s:%d", expand('%:p'), line('.'))<CR>
 
+" Insert openstack copyright at the top of the file
+map <leader>oc :0r ~/work/openstack-copyright.txt<CR>
+
 " write it with sudo
 cmap w!! w !sudo tee % >/dev/null
 
@@ -110,6 +112,7 @@ au BufRead,BufNewFile {COMMIT_EDITMSG,.stgit-*.txt} set ft=gitcommit
 
 " syntax overrides
 autocmd FileType ruby,yml set shiftwidth=2
+autocmd FileType python set colorcolumn=80      " show warning column at 85 chars
 " autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre <buffer> call StripTrailingWhiteSpaces()
 autocmd BufWritePre * call StripTrailingWhiteSpaces()
 
