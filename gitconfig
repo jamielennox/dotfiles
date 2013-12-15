@@ -19,3 +19,5 @@
         dc = diff --cached
         edit-unmerged = "!$EDITOR `git diff --name-only --diff-filter=U`"
         add-unmerged = "!git add `git diff --name-only --diff-filter=U`"
+[core]
+	excludesfile = ~/.gitignore
