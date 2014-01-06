@@ -76,7 +76,7 @@ map <leader>a :Tabularize/
 map <leader>b :echo printf("%s:%d", expand('%:p'), line('.'))<CR>
 
 " Insert openstack copyright at the top of the file
-map <leader>oc :0r ~/work/openstack-copyright.txt<CR>
+map <leader>oc :0r $HOME/.vim/other/openstack-copyright.txt<CR>
 
 " write it with sudo
 cmap w!! w !sudo tee % >/dev/null
