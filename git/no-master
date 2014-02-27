@@ -1,0 +1,10 @@
+#!/bin/sh
+branch=`git rev-parse --abbrev-ref=strict HEAD`
+
+if [ "$branch" = 'master' ]; then
+    echo "You are trying to commin on the $branch branch"
+    echo "That doesn't seem right..."
+
+    echo "You can work around this by adding --no-verify to the command."
+    exit 1
+fi

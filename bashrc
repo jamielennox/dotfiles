@@ -34,7 +34,7 @@ export EDITOR="/usr/bin/gvim -f"
 alias givm='gvim'
 alias sl='ls'
 alias grpe='grep'
-
+alias t='todo.sh'
 
 alias g='git'
 alias ga='git add'

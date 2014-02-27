@@ -65,6 +65,7 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 map <leader>y :YRShow<CR>
 map <leader>v :tabedit $MYVIMRC<CR>
 map <leader>s :set spell!<CR> " Toggle
+map <leader>f :NERDTreeFind<CR>
 
 " This is simply a screen refresh as for some reason I sometimes lose my cursor
 map <leader>c :!echo > /dev/null<CR>
