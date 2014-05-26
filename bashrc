@@ -31,6 +31,7 @@ export PSA_ROOT=$LOCAL_PREFIX/share/psa
 export EDITOR="/usr/bin/gvim -f"
 
 alias givm='gvim'
+alias gvmi='gvim'
 alias sl='ls'
 alias grpe='grep'
 alias t='todo.sh'
@@ -39,9 +40,13 @@ alias g='git'
 alias ga='git add'
 alias gc='git checkout'
 alias gs='git status'
+alias sg='git status'
 alias gd='git diff'
 alias gpr='git pull --rebase'
 alias gr='git review'
+
+alias ttr='python -m testtools.run'
+alias ttd='python -m testtools.run discover'
 
 complete -o default -o nospace -F _git g
 
