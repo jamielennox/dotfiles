@@ -46,8 +46,8 @@ alias gpr='git pull --rebase'
 alias gr='git review'
 alias grc='git rebase --continue'
 
-alias ttr='python -m testtools.run'
-alias ttd='python -m testtools.run discover'
+alias pttr='python -m testtools.run'
+alias pttd='python -m testtools.run discover'
 
 complete -o default -o nospace -F _git g
 
