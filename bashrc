@@ -44,6 +44,7 @@ alias sg='git status'
 alias gd='git diff'
 alias gpr='git pull --rebase'
 alias gr='git review'
+alias grc='git rebase --continue'
 
 alias ttr='python -m testtools.run'
 alias ttd='python -m testtools.run discover'
@@ -65,3 +66,6 @@ function source_if_exists() {
 
 source_if_exists "/usr/bin/virtualenvwrapper.sh"
 source_if_exists "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
+
+# added by travis gem
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
