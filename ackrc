@@ -1,0 +1,3 @@
+--ignore-dir=.testrepository
+--ignore-dir=covhtml
+--ignore-dir=cover
