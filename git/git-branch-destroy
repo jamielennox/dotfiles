@@ -1,0 +1,32 @@
+#!/bin/bash
+
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+
+git checkout master
+
+while getopts "y" opt; do
+    case "$opt" in
+        y)
+            YES=1
+            ;;
+    esac
+done
+
+if [ $BRANCH = HEAD ]; then
+    echo "Cannot destroy detached head"
+    exit 1
+fi
+
+if [ $BRANCH = master ]; then
+    exit 1
+fi
+
+if [ ! $YES ]; then
+    read -r -p "Are you sure you wish to destroy $BRANCH? [y/N] " response
+    response=${response,,}    # tolower
+    if [[ ! $response =~ ^(yes|y)$ ]]; then
+        exit 1
+    fi
+fi
+
+git branch -D $BRANCH
