@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# create an associative array of all the changes
+declare -A MERGED
+for commit in `git log master | grep Change-Id | cut -d : -f 2`; do
+    MERGED["$commit"]=1
+done
+
+for branch in `git branch | grep -v master`; do
+    found=1
+
+    # for every commit on the branch check to ensure its in master
+    for commit in `git log $branch | grep Change-Id | cut -d : -f 2`; do
+        if [[ ! ${MERGED["$commit"]} ]]; then
+            # if it's not in master then this branch wasn't merged so we
+            # want to break out and not print its name.
+            found=0
+            break
+        fi
+    done
+
+    if [ $found = 1 ]; then
+        # if all of the Commit-Ids on branch were also in master then
+        # print out the branch name because we can probably get rid of it
+        echo $branch
+    fi
+done
