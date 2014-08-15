@@ -29,6 +29,7 @@ export CSCOPE_EDITOR=gvim
 export PSA_ROOT=$LOCAL_PREFIX/share/psa
 
 export EDITOR="/usr/bin/gvim -f"
+export ANSIBLE_NOCOWS=1
 
 alias givm='gvim'
 alias gvmi='gvim'
