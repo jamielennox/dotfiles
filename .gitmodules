@@ -76,3 +76,6 @@
 [submodule "vim/bundle/dragvisuals.vim"]
 	path = vim/bundle/dragvisuals.vim
 	url = https://github.com/gavinbeatty/dragvisuals.vim.git
+[submodule "vim/bundle/vim-colors-solarized"]
+	path = vim/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git

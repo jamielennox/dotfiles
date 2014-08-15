@@ -40,6 +40,9 @@ set hidden              " don't unload buffers when it is not shown
 set scrolloff=3         " Start scrolling 3 lines from bottom
 nnoremap ; :
 
+set background=dark     " Dark colors
+colorscheme solarized   " solarized scheme
+
 " learn to use hjkl
 " map <up> <nop>
 " map <down> <nop>
