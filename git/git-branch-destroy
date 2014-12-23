@@ -2,7 +2,7 @@
 
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 
-git checkout master
+git checkout master || exit $?
 
 while getopts "y" opt; do
     case "$opt" in
