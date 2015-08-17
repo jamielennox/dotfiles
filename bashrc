@@ -11,7 +11,35 @@ fi
 # info: https://bugzilla.redhat.com/show_bug.cgi?id=878428
 
 #PS1='\[\033[1;32m\][\u@\h \[\033[31m\]\W\[\033[34m\]$(__git_ps1 " (%s)")\[\033[1;32m\]]\\$\[\033[m\] '
-PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+# PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+
+export PS1="$ "
+export PROMPT_COMMAND=__prompt_command
+
+function __prompt_command() {
+   local EXIT="$?"             # This needs to be first
+
+   PS1=""
+   if [ "$VIRTUAL_ENV" ]
+   then
+       PS1+="(`basename $VIRTUAL_ENV`)"
+   fi
+
+   PS1+="[\u@\h "
+
+   if [ "$EXIT" = "0" ]
+   then
+       PS1+="\033[0;32m:)\033[0;0m"
+   else
+       PS1+="\033[0;31m:(\033[0;0m"
+   fi
+
+   PS1+=" \W"
+   PS1+="$(__git_ps1 ' (%s)')"
+
+   PS1+="]\$ "
+}
+
 
 # local_prefix is not a standard term, just something this uses.
 export LOCAL_PREFIX=$HOME/usr
@@ -65,8 +93,11 @@ function source_if_exists() {
     [[ -s $1 ]] && source $1
 }
 
+if [ "$TERM" == "xterm" ] ; then
+  xprop -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT "dark" -id `xprop -root | awk '/^_NET_ACTIVE_WINDOW/ {print $5}'`
+fi
+
 source_if_exists "/usr/bin/virtualenvwrapper.sh"
 source_if_exists "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
 
-# added by travis gem
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+[ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
