@@ -41,29 +41,29 @@ function __prompt_command() {
 }
 
 
-# local_prefix is not a standard term, just something this uses.
-export LOCAL_PREFIX=$HOME/usr
+# # local_prefix is not a standard term, just something this uses.
+# export LOCAL_PREFIX=$HOME/usr
+#
+# # User specific aliases and functions
+# export CONFIG_SITE=$HOME/config.site
+# export CMAKE_PREFIX_PATH=$LOCAL_PREFIX
+# export CMAKE_INSTALL_PREFIX=$LOCAL_PREFIX
+# export PKG_CONFIG_PATH=$LOCAL_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
+# export PATH=$LOCAL_PREFIX/bin:$PATH:/var/lib/gems/1.8/bin
+# export GI_TYPELIB_PATH=$LOCAL_PREFIX/lib/girepository-1.0/:$GI_TYPELIB_PATH
+# export LD_LIBRARY_PATH=$LOCAL_PREFIX/lib/:$LD_LIBRARY_PATH
+# export PERL5LIB=$LOCAL_PREFIX/share/perl5:$PERL5LIB
+# export CSCOPE_EDITOR=gvim
+# export PSA_ROOT=$LOCAL_PREFIX/share/psa
 
-# User specific aliases and functions
-export CONFIG_SITE=$HOME/config.site
-export CMAKE_PREFIX_PATH=$LOCAL_PREFIX
-export CMAKE_INSTALL_PREFIX=$LOCAL_PREFIX
-export PKG_CONFIG_PATH=$LOCAL_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
-export PATH=$LOCAL_PREFIX/bin:$PATH:/var/lib/gems/1.8/bin
-export GI_TYPELIB_PATH=$LOCAL_PREFIX/lib/girepository-1.0/:$GI_TYPELIB_PATH
-export LD_LIBRARY_PATH=$LOCAL_PREFIX/lib/:$LD_LIBRARY_PATH
-export PERL5LIB=$LOCAL_PREFIX/share/perl5:$PERL5LIB
-export CSCOPE_EDITOR=gvim
-export PSA_ROOT=$LOCAL_PREFIX/share/psa
-
-export EDITOR="/usr/bin/gvim -f"
+export EDITOR="/usr/bin/vim"
 export ANSIBLE_NOCOWS=1
 
 alias givm='gvim'
 alias gvmi='gvim'
 alias sl='ls'
 alias grpe='grep'
-alias t='todo.sh'
+alias exti='exit'
 
 alias g='git'
 alias ga='git add'
@@ -78,10 +78,27 @@ alias grc='git rebase --continue'
 alias pttr='python -m testtools.run'
 alias pttd='python -m testtools.run discover'
 
+alias ":q"="exit"
+
 complete -o default -o nospace -F _git g
 
-function vssh() {
-    ssh `sudo ~/virt-addr.py $1`
+# go back to the root of my git tree
+function cdg () {
+    TEMP_PWD=`pwd`
+    while [ ! -d .git ]
+    do
+        if [ `pwd` == '/' ]; then
+            cd $TEMP_PWD
+            return 1
+        fi
+        cd ..
+    done
+    OLDPWD=$TEMP_PWD
+}
+
+function tp () {
+    V=`python -c "import sys; print '%d%d' % (sys.version_info.major, sys.version_info.minor)"`
+    tox -e py$V
 }
 
 set -o vi
