@@ -23,3 +23,10 @@
         last = log -1 --abbrev-commit --pretty=format:"%C(red)%h\\ %C(yellow)%cr\\ %C(reset)%s" --decorate
 [core]
 	excludesfile = ~/.gitignore
+[sendemail]
+        from = Jamie Lennox <jamielennox@gmail.com>
+        smtpserver = smtp.gmail.com
+        smtpuser = jamielennox@gmail.com
+        smtpencryption = tls
+        chainreplyto = false
+        smtpserverport = 587
