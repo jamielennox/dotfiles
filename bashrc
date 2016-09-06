@@ -16,6 +16,11 @@ fi
 export PS1="$ "
 export PROMPT_COMMAND=__prompt_command
 
+GIT_PS1_SHOWDIRTYSTATE=TRUE
+GIT_PS1_SHOWSTASHSTATE=TRUE
+GIT_PS1_SHOWUNTRACKEDFILES=TRUE
+GIT_PS1_SHOWUPSTREAM="verbose"
+
 function __prompt_command() {
    local EXIT="$?"             # This needs to be first
 
