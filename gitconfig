@@ -34,3 +34,5 @@
         smtpencryption = tls
         chainreplyto = false
         smtpserverport = 587
+[hub]
+	host = github.ibm.com
