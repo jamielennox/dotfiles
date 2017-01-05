@@ -123,3 +123,6 @@ source_if_exists "/usr/bin/virtualenvwrapper.sh"
 source_if_exists "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
 
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
+
+# if thefuck is installed then setup its alias
+command -v thefuck >/dev/null 2>&1 && eval $(thefuck --alias)
