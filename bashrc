@@ -34,12 +34,12 @@ function __prompt_command() {
 
    if [ "$EXIT" = "0" ]
    then
-       PS1+="\033[0;32m:)\033[0;0m"
+       PS1+="\[$(tput setaf 2)\]:)"
    else
-       PS1+="\033[0;31m:(\033[0;0m"
+       PS1+="\[$(tput setaf 1)\]:("
    fi
 
-   PS1+=" \W"
+   PS1+="\[$(tput sgr0)\] \W"
    PS1+="$(__git_ps1 ' (%s)')"
 
    PS1+="]\$ "
