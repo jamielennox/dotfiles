@@ -2,3 +2,4 @@
 --ignore-dir=.tox
 --ignore-dir=covhtml
 --ignore-dir=cover
+--ignore-dir=venv
