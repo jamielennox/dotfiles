@@ -17,6 +17,7 @@
         la = "!git config -l | grep alias | cut -c 7-"
         df = diff
         dc = diff --cached
+        stat = diff --stat
         edit-unmerged = "!$EDITOR `git diff --name-only --diff-filter=U`"
         add-unmerged = "!git add `git diff --name-only --diff-filter=U`"
         branch-date = "!git for-each-ref --sort=committerdate --format='%1B[32m%(committerdate:iso8601) %1B[34m%(committerdate:relative) %1B[0;m%(refname:short)' refs/heads/"
@@ -34,5 +35,7 @@
         smtpencryption = tls
         chainreplyto = false
         smtpserverport = 587
+[url "https://git.openstack.org/"]
+	insteadOf = git://git.openstack.org/
 [hub]
 	host = github.ibm.com
