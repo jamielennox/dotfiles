@@ -106,6 +106,10 @@ function tp () {
     tox -e py$V
 }
 
+function fixssh() {
+    eval $(tmux show-env | sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p')
+}
+
 set -o vi
 
 # virsh connect to the qemu:///system by default
