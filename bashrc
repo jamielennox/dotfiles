@@ -5,6 +5,14 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+function source_if_exists() {
+    [[ -s $1 ]] && source $1
+}
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    source_if_exists "/etc/profile.d/vte.sh"
+fi
+
 # if you get __git_ps1 not found on fedora 18 do:
 # sudo ln -s /usr/share/git-core/contrib/completion/git-prompt.sh  /etc/profile.d/
 # or add to .bashrc
@@ -43,6 +51,11 @@ function __prompt_command() {
    PS1+="$(__git_ps1 ' (%s)')"
 
    PS1+="]\$ "
+
+   if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+       # https://gnunn1.github.io/tilix-web/manual/vteconfig/
+       PS1="$PS1$(__vte_osc7)"
+   fi
 }
 
 
@@ -114,10 +127,6 @@ set -o vi
 
 # virsh connect to the qemu:///system by default
 export VIRSH_DEFAULT_CONNECT_URI="qemu:///system"
-
-function source_if_exists() {
-    [[ -s $1 ]] && source $1
-}
 
 if [ "$TERM" == "xterm" ] ; then
   xprop -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT "dark" -id `xprop -root | awk '/^_NET_ACTIVE_WINDOW/ {print $5}'`
