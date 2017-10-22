@@ -176,6 +176,15 @@ if has("gui_running")
     set spell
 endif
 
+" Move around in the quickfix list
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+
+" Don't map <C-n> and <C-p> in yankring. We want those elsewhere.
+let g:yankring_replace_n_pkey=''
+let g:yankring_replace_n_nkey=''
+
 " " Command-T requires compiling a c extension. see :help command-t-installation
 
 " use ctrl+space for auto complete, tab is annoying
