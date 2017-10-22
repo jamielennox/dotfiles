@@ -23,7 +23,6 @@ set number              " always show line numbers, relativenumber has
 
 set cinwords=if,else,while,do,for,switch,case
 
-set shiftwidth=4        " tabs are 4 spaces
 set wildignore=*.swp,*.pyc
                         " Don't open these
 set visualbell          " don't beep
@@ -121,6 +120,10 @@ autocmd FileType ruby,yml set shiftwidth=2
 autocmd FileType python set colorcolumn=80      " show warning column at 85 chars
 " autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre <buffer> call StripTrailingWhiteSpaces()
 autocmd BufWritePre * call StripTrailingWhiteSpaces()
+
+autocmd FileType python,css,scss setlocal shiftwidth=4 tabstop=4
+autocmd FileType html,javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 " reload vimrc if it changes
 augroup myvimrchooks
