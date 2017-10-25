@@ -115,6 +115,9 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Capfile,*.rake,config.ru,*.gemspec} set 
 au BufRead,BufNewFile {*.md,*.mkd,*.markdown} set ft=markdown
 au BufRead,BufNewFile {COMMIT_EDITMSG,.stgit-*.txt} set ft=gitcommit
 
+" do syntax highlighting
+syntax on
+
 " syntax overrides
 autocmd FileType ruby,yml set shiftwidth=2
 autocmd FileType python set colorcolumn=80      " show warning column at 85 chars
