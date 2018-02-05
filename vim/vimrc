@@ -206,6 +206,9 @@ let g:pymode_options_max_line_length=79
 
 let g:ansible_options = {'documentation_mapping': '<C-K>'}
 
+" Don't use editorconfig on git files
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
 " E501: Line length < 80
 " E126: Under indented hanging line
 " E128: Over indented hanging line
