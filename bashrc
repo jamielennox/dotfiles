@@ -13,6 +13,8 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source_if_exists "/etc/profile.d/vte.sh"
 fi
 
+source_if_exists "/usr/local/etc/bash_completion.d/git-prompt.sh"
+
 # if you get __git_ps1 not found on fedora 18 do:
 # sudo ln -s /usr/share/git-core/contrib/completion/git-prompt.sh  /etc/profile.d/
 # or add to .bashrc
@@ -98,6 +100,12 @@ alias pttd='python -m testtools.run discover'
 
 alias ":q"="exit"
 
+alias k="kubectl"
+alias kg="kubectl get"
+alias kns="kubens"
+alias kctl="kubectl"
+alias kctx="kubectx"
+
 complete -o default -o nospace -F _git g
 
 # go back to the root of my git tree
@@ -135,7 +143,28 @@ fi
 source_if_exists "/usr/bin/virtualenvwrapper.sh"
 source_if_exists "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
 
+source_if_exists '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+source_if_exists '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+
+export NVM_DIR="$HOME/.nvm"
+source_if_exists "$(brew --prefix nvm)/nvm.sh"
+
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
 # if thefuck is installed then setup its alias
 command -v thefuck >/dev/null 2>&1 && eval $(thefuck --alias)
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/serverless.bash ] && . /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/sls.bash ] && . /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/sls.bash
+
+# A common place to dump all go building
+export GOPATH=~/goroot
+export PATH=$GOPATH/bin:$PATH
