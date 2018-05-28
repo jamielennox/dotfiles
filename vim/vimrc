@@ -126,7 +126,13 @@ autocmd BufWritePre * call StripTrailingWhiteSpaces()
 
 autocmd FileType python,css,scss setlocal shiftwidth=4 tabstop=4
 autocmd FileType html,javascript setlocal shiftwidth=2 tabstop=2
+
 autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+let g:go_fmt_command = "goimports"
 
 " reload vimrc if it changes
 augroup myvimrchooks
