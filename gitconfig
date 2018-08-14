@@ -26,6 +26,7 @@
         unstage = reset HEAD --
         ammend = commit --amend
         fixup = commit --amend -C HEAD
+	pushf = push --force-with-lease
 [core]
 	excludesfile = ~/.gitignore
 [sendemail]
