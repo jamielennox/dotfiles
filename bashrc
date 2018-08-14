@@ -76,7 +76,7 @@ function __prompt_command() {
 # export CSCOPE_EDITOR=gvim
 # export PSA_ROOT=$LOCAL_PREFIX/share/psa
 
-export EDITOR="/usr/bin/vim"
+export EDITOR=`which vim`
 export ANSIBLE_NOCOWS=1
 
 alias givm='gvim'
