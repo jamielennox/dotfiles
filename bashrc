@@ -166,5 +166,5 @@ fi
 [ -f /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/sls.bash ] && . /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/sls.bash
 
 # A common place to dump all go building
-export GOPATH=~/goroot
+export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH

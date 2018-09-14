@@ -39,6 +39,8 @@ set hidden              " don't unload buffers when it is not shown
 set scrolloff=3         " Start scrolling 3 lines from bottom
 nnoremap ; :
 
+set modeline
+
 set foldlevelstart=99   " Don't fold anything on open
 
 set background=dark     " Dark colors
@@ -214,6 +216,10 @@ let g:ansible_options = {'documentation_mapping': '<C-K>'}
 
 " Don't use editorconfig on git files
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" terraform does it's own thing for formatting
+let g:terraform_align = 1
+let g:terraform_commentstring='# %s'
 
 " E501: Line length < 80
 " E126: Under indented hanging line

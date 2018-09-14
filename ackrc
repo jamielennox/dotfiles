@@ -3,3 +3,4 @@
 --ignore-dir=covhtml
 --ignore-dir=cover
 --ignore-dir=venv
+--ignore-dir=vendor
