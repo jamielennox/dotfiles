@@ -151,6 +151,12 @@ source_if_exists "$(brew --prefix nvm)/nvm.sh"
 
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
+if [ -d "$HOME/.bashrc.d" ]; then
+  for file in $HOME/.bashrc.d/*.bashrc; do
+    source "$file"
+  done
+fi
+
 # if thefuck is installed then setup its alias
 command -v thefuck >/dev/null 2>&1 && eval $(thefuck --alias)
 
