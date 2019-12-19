@@ -1,6 +1,7 @@
 [user]
 	name = Jamie Lennox
         email = jamie@vibrato.com.au
+	signingkey = 7748B04D5CA4B3D5
 [push]
 	default = simple
 [gitreview]
@@ -40,3 +41,7 @@
 	insteadOf = git://git.openstack.org/
 [hub]
 	host = github.ibm.com
+[remote "origin"]
+	prune = true
+[diff "sopsdiffer"]
+	textconv = sops -d

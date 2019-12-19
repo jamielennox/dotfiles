@@ -26,6 +26,8 @@ source_if_exists "/usr/local/etc/bash_completion.d/git-prompt.sh"
 export PS1="$ "
 export PROMPT_COMMAND=__prompt_command
 
+# source "$(brew --prefix kube-ps1)/share/kube-ps1.sh"
+
 GIT_PS1_SHOWDIRTYSTATE=TRUE
 GIT_PS1_SHOWSTASHSTATE=TRUE
 GIT_PS1_SHOWUNTRACKEDFILES=TRUE
@@ -50,7 +52,9 @@ function __prompt_command() {
    fi
 
    PS1+="\[$(tput sgr0)\] \W"
-   PS1+="$(__git_ps1 ' (%s)')"
+   PS1+=" "
+   PS1+="$(__git_ps1 '(%s)')"
+   # PS1+="$(kube_ps1)"
 
    PS1+="]\$ "
 
@@ -164,6 +168,9 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+# brew mysql client hack
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [ -f /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/serverless.bash ] && . /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/serverless.bash
@@ -174,3 +181,6 @@ fi
 # A common place to dump all go building
 export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
