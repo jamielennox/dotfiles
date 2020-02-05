@@ -13,7 +13,7 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source_if_exists "/etc/profile.d/vte.sh"
 fi
 
-source_if_exists "/usr/local/etc/bash_completion.d/git-prompt.sh"
+source_if_exists "$(brew --prefix)/etc/bash_completion"
 
 # if you get __git_ps1 not found on fedora 18 do:
 # sudo ln -s /usr/share/git-core/contrib/completion/git-prompt.sh  /etc/profile.d/
@@ -64,27 +64,9 @@ function __prompt_command() {
    fi
 }
 
-
-# # local_prefix is not a standard term, just something this uses.
-# export LOCAL_PREFIX=$HOME/usr
-#
-# # User specific aliases and functions
-# export CONFIG_SITE=$HOME/config.site
-# export CMAKE_PREFIX_PATH=$LOCAL_PREFIX
-# export CMAKE_INSTALL_PREFIX=$LOCAL_PREFIX
-# export PKG_CONFIG_PATH=$LOCAL_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
-# export PATH=$LOCAL_PREFIX/bin:$PATH:/var/lib/gems/1.8/bin
-# export GI_TYPELIB_PATH=$LOCAL_PREFIX/lib/girepository-1.0/:$GI_TYPELIB_PATH
-# export LD_LIBRARY_PATH=$LOCAL_PREFIX/lib/:$LD_LIBRARY_PATH
-# export PERL5LIB=$LOCAL_PREFIX/share/perl5:$PERL5LIB
-# export CSCOPE_EDITOR=gvim
-# export PSA_ROOT=$LOCAL_PREFIX/share/psa
-
 export EDITOR=`which vim`
 export ANSIBLE_NOCOWS=1
 
-alias givm='gvim'
-alias gvmi='gvim'
 alias sl='ls'
 alias grpe='grep'
 alias exti='exit'
@@ -144,14 +126,14 @@ if [ "$TERM" == "xterm" ] ; then
   xprop -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT "dark" -id `xprop -root | awk '/^_NET_ACTIVE_WINDOW/ {print $5}'`
 fi
 
-source_if_exists "/usr/bin/virtualenvwrapper.sh"
-source_if_exists "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
+# source_if_exists "/usr/bin/virtualenvwrapper.sh"
+# source_if_exists "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
 
-source_if_exists '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
-source_if_exists '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+# source_if_exists '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+# source_if_exists '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
 
-export NVM_DIR="$HOME/.nvm"
-source_if_exists "$(brew --prefix nvm)/nvm.sh"
+# export NVM_DIR="$HOME/.nvm"
+# source_if_exists "$(brew --prefix nvm)/nvm.sh"
 
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
@@ -161,26 +143,12 @@ if [ -d "$HOME/.bashrc.d" ]; then
   done
 fi
 
+source_if_exists "$(brew --prefix asdf)/asdf.sh"
+
 # if thefuck is installed then setup its alias
 command -v thefuck >/dev/null 2>&1 && eval $(thefuck --alias)
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
-# brew mysql client hack
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/serverless.bash ] && . /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/sls.bash ] && . /Users/jamie/work/pizzahut/pizzahutau-serverless-poshealthcheck/node_modules/tabtab/.completions/sls.bash
+command -v asdf >/dev/null 2>&1 && eval "$(asdf exec direnv hook bash)"
 
 # A common place to dump all go building
-export GOPATH=~/go
-export PATH=$GOPATH/bin:$PATH
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export GOPATH=~/go
+# export PATH=$GOPATH/bin:$PATH
