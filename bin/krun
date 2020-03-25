@@ -1,0 +1,26 @@
+#!/bin/bash
+
+PODNAME="jamie-debug-$(openssl rand -hex 6)"
+IMG=${1:---}
+
+function __ksh_trap () {
+    kubectl get pod $PODNAME &> /dev/null
+
+    if [[ $? ]]; then
+        kubectl delete pod $PODNAME
+    fi
+}
+
+# cheap -- handling for passing everything to cmd. Will need to be changed
+# if we improve the script.
+if [[ $IMG == "--" ]]; then
+  IMG="debian"
+fi
+
+shift
+CMD=${@:-/bin/bash}
+
+trap __ksh_trap SIGINT
+
+echo kubectl run --generator=run-pod/v1 "$PODNAME" --rm -i --tty --image $IMG -- $CMD
+kubectl run --generator=run-pod/v1 "$PODNAME" --rm -i --tty --image $IMG -- $CMD
