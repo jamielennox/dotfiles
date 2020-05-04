@@ -1,3 +1,0 @@
-test $prefix = NONE && prefix=$HOME/usr
-echo "$CONFIG_SITE script setting prefix to:" $prefix
-
