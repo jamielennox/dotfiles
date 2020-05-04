@@ -67,9 +67,6 @@
 [submodule "vim/bundle/scratch.vim"]
 	path = vim/bundle/scratch.vim
 	url = https://github.com/jamielennox/scratch.vim
-[submodule "vim/bundle/vis.vim"]
-	path = vim/bundle/vis.vim
-	url = https://github.com/AzizLight/vis.vim.git
 [submodule "vim/bundle/dragvisuals.vim"]
 	path = vim/bundle/dragvisuals.vim
 	url = https://github.com/gavinbeatty/dragvisuals.vim.git
