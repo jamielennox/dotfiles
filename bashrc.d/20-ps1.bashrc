@@ -1,4 +1,4 @@
-# vim: set filetype=bash: 
+# vim: set filetype=bash:
 
 # if you get __git_ps1 not found on fedora 18 do:
 # sudo ln -s /usr/share/git-core/contrib/completion/git-prompt.sh  /etc/profile.d/
@@ -12,7 +12,7 @@ export PS1="$ "
 export PROMPT_COMMAND=__prompt_command
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    source "$(brew --prefix kube-ps1)/share/kube-ps1.sh"
+    source_if_exists "$(brew --prefix kube-ps1)/share/kube-ps1.sh"
 fi
 
 GIT_PS1_SHOWDIRTYSTATE=TRUE
