@@ -1,6 +1,6 @@
 [user]
 	name = Jamie Lennox
-        email = jamielennox@gmail.com
+	email = jamie.lennox@agoda.com
 	signingkey = 7748B04D5CA4B3D5
 [push]
 	default = simple
@@ -30,6 +30,7 @@
 	pushf = push --force-with-lease
 [core]
 	excludesfile = ~/.gitignore
+	autocrlf = input
 [sendemail]
         from = Jamie Lennox <jamielennox@gmail.com>
         smtpserver = smtp.gmail.com
@@ -45,3 +46,5 @@
 	prune = true
 [diff "sopsdiffer"]
 	textconv = sops -d
+[init]
+	defaultBranch = main
